@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Selector</title>
+    <style>
+        /* Element Selector Example: */
+        div {
+            background-color: rgb(189, 47, 3);
+        }
+        /* Class Selector Example: */
+        .C2{
+            background-color:rgb(58, 21, 123);
+        }
+        /* ID Selector Example: */
+        #D2{
+            background-color: rgb(3, 55, 3);
+        }
+        /* Child Selector Example: */
+        div>p{
+
+            background-color: rgb(235, 136, 219);
+        }
+        /* Descendant Selector Example: */
+        div p{
+            background-color: aqua;
+        }
+        /* Universal Selector Example: */
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        /* Pseudo Selector Example: */
+        a:hover{
+            background-color: rgb(199, 224, 57);
+        }
+        a:visited{
+            color: red;
+        }
+        a:link{
+            color: green;
+        }
+        a:active{
+            background-color: rgb(47, 0, 255);
+        }
+        a:first-child{
+            background-color: brown;
+        }
+       
+
+    </style>
+</head>
+<body>
+    <main class="one">
+        <p>Dibesh is a good boy</p>
+        <p>Swagat is a good boy</p>
+        <p>Binayak is a good boy</p>
+
+    </main>
+
+
+
+
+    <div>
+        I am a Java developer.
+        <article>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing.</p>
+        </article>
+    </div><br>
+
+    <div class="C2">
+        I am a Python developer.
+    </div><br>
+
+    <div id="D2"> 
+        I am a web developer.
+        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+             Soluta, quisquam!</p>
+    </div>
+
+    <span class="C2"> 
+        I am a web designer.
+    </span><br><br>
+
+    <a href="https://www.google.com">Go to Google</a><br>
+    <a href="https://www.instagram.com">Go to Instagram</a>
+
+    
+</body>
+</html>
