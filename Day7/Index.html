@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Css Boxmodel</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+.Box{
+    background-color: lightgreen;
+}
+.Box1{
+    color:yellow;
+    padding: 20px;
+    margin: 20px;
+    border: 5px black solid;
+    height: 100px;
+    box-sizing: border-box; 
+/* it includes padding and border in width and height calculation */
+
+}
+.Box2{
+    color:blue;
+    padding: 10px;
+    margin: 20px;
+    border: 5px black solid;
+
+}
+/* Calculating the tital dimension of the element: */
+/* total width= margin-left + border-left + padding-left + width + padding-right + border-right + margin-right */
+/* total height= margin-top + border-top + padding-top + height + padding-bottom + border-bottom */
+    </style>
+</head>
+<body>
+    <div class="Box Box1">Dibesh </div>
+     <div class="Box Box2">Ankita </div>
+</body>
+</html>
