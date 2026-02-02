@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Sizing Units</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+
+        }
+
+        .box {
+            border: 2px solid black;
+            /* use for resoponsive design */
+            /* 50vw → 50% of browser window width */
+            width: 50vw;
+            /* 50vh → 50% of browser window width */
+            height: 50vh;
+            background-color: lightblue;
+            margin: 23px auto;
+            font-size: 20px;
+
+            /* em is relative to the parent element’s font-size */
+
+            /* It inherits and multiplies */
+        }
+
+        .box1 {
+            border: 2px solid black;
+            width: 500px;
+            height: 500px;
+            background-color: lightgreen;
+            margin: 23px auto;
+            font-size: 1rem;
+        }
+        .mycount{
+            background-color: lightcoral;
+            color: yellow;
+            
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box"> Lorem ipsum dolor sit amet consectetur adipisicing elit.
+        Voluptate earum sapiente officia?</div>
+    <div class="box1">
+        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+            Consequatur mollitia aut accusantium!</p>
+    </div>
+    <div class="mycount">t am another container</div>
+
+
+
+</body>
+
+</html>
