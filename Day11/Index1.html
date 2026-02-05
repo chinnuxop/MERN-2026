@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Float and Clear</title>
+    <style>
+        /* *{
+            margin:0;
+            padding:0;
+        } */
+         .cards{
+            border:2px solid black;
+            display: flow-root;
+         }
+        img{
+            float: left;
+           
+        }
+        .card{
+             /* border:2px solid rgb(156, 11, 11); */
+            font-weight: 400;
+        }
+        .card:nth-child(3){
+            background-color: rgb(166, 17, 17);
+            /* clear: right; */
+        }
+        .card:nth-child(5){
+            background-color: rgb(195, 53, 53);
+            /* clear: right; */
+        }
+         .card:nth-child(7){
+            background-color: rgb(232, 91, 91);
+            /* clear: right; */
+        }
+    </style>
+</head>
+<body>
+    <div class="cards">
+        <img style="height: 300px;"  src="virat.jpg" alt="Virat_Kohli"><br>
+        <div class="card">
+          Virat Kohli is the definition of attitude backed by discipline. His journey proves that talent alone is never enough—relentless hard work, fitness, and mental strength are what create long-term success. Whether in study, career, or a comeback phase, Kohli’s mindset teaches one powerful lesson: show up every day, even when motivation is low. He faced failures, form slumps, and criticism, but instead of excuses, he chose improvement.
+        </div><br>
+        <div class="card">
+            His aggression isn’t noise—it’s confidence built through preparation. Virat Kohli inspires millions by showing that consistency, self-belief, and hunger to be better than yesterday are the real keys to greatness. 
+        </div><br>
+        <div class="card">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Reiciendis sed sunt consectetur architecto exercitationem quo illo, cum labore laboriosam! Labore?, ipsum dolor sit amet consectetur adipisicing elit. Provident dolorum ullam unde?`, ipsum dolor sit amet consectetur adipisicing elit. Voluptatum rem similique provident quaerat iusto. Tempore delectus modi animi asperiores aspernatur officia debitis perspiciatis quo? Amet, quibusdam nesciunt iure aut consequatur vitae blanditiis veritatis nobis assumenda, velit praesentium quod alias perspiciatis?
+
+        </div><br>
+    </div>
+    
+</body>
+</html>
