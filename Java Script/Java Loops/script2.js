@@ -12,4 +12,4 @@ do {
     console.log(a)
     i++;
     
-} while (i<6);
+} while (i<7);
