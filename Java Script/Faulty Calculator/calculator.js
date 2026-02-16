@@ -1,5 +1,5 @@
 console.log("Faulty calculator")
-//create a faulty cal calculator usiong javscript
+//Create a faulty cal calculator usiong javscript
 /*This faulty calculator does following:
 1.it takes two number as input from UserActivation
 2.it performs wrong operator as follow:
