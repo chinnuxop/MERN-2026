@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Business Name Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        #result {
+            font-size: 24px;
+            font-weight: bold;
+            margin: 20px 0;
+            color: #333;
+        }
+
+        button {
+            padding: 12px 25px;
+            font-size: 16px;
+            border: none;
+            border-radius: 8px;
+            background: #667eea;
+            color: white;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: #5a67d8;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>🔥 Business Name Generator</h1>
+        <div id="result">Click Generate</div>
+        <button onclick="generateName()">Generate Name</button>
+    </div>
+
+    <script>
+        let obj1 = ["Crazy", "Amazing", "Fire"];
+        let obj2 = ["Engines", "Foods", "Garment"];
+        let obj3 = ["Bros", "Limited", "Hub"];
+
+        function generateName() {
+            let rand1 = Math.floor(Math.random() * obj1.length);
+            let rand2 = Math.floor(Math.random() * obj2.length);
+            let rand3 = Math.floor(Math.random() * obj3.length);
+
+            let finalName = obj1[rand1] + " " + obj2[rand2] + " " + obj3[rand3];
+
+            document.getElementById("result").innerText = finalName;
+        }
+    </script>
+
+</body>
+</html>
