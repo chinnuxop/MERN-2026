@@ -30,11 +30,9 @@ console.log(a1.sort())
 // console.log(num)
 console.log(num.splice(1, 2, 4, 6, 8))
 // Start at index 1
-
 // Remove 2 elements
-
 // Insert 4, 6, 8
 console.log(num)
-//16:25
+
 
 
