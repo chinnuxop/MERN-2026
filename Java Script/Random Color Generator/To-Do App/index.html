@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>To-Do App</title>
+  <style>
+    body {
+      font-family: Arial;
+      background: #f4f4f4;
+      display: flex;
+      justify-content: center;
+      margin-top: 50px;
+    }
+
+    .container {
+      background: white;
+      padding: 20px;
+      width: 300px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px gray;
+    }
+
+    input {
+      width: 70%;
+      padding: 8px;
+    }
+
+    button {
+      padding: 8px;
+      cursor: pointer;
+    }
+
+    li {
+      list-style: none;
+      margin: 10px 0;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .done {
+      text-decoration: line-through;
+      color: gray;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h2>To-Do List</h2>
+  <input type="text" id="taskInput" placeholder="Enter task">
+  <button onclick="addTask()">Add</button>
+  <ul id="taskList"></ul>
+</div>
+
+<script>
+  let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+
+  function showTasks() {
+    const list = document.getElementById("taskList");
+    list.innerHTML = "";
+
+    tasks.forEach((task, index) => {
+      const li = document.createElement("li");
+
+      li.innerHTML = `
+        <span onclick="toggleTask(${index})" class="${task.done ? 'done' : ''}">
+          ${task.text}
+        </span>
+        <button onclick="deleteTask(${index})">❌</button>
+      `;
+
+      list.appendChild(li);
+    });
+
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+  }
+
+  function addTask() {
+    const input = document.getElementById("taskInput");
+
+    if (input.value.trim() === "") return;
+
+    tasks.push({ text: input.value, done: false });
+    input.value = "";
+    showTasks();
+  }
+
+  function deleteTask(index) {
+    tasks.splice(index, 1);
+    showTasks();
+  }
+
+  function toggleTask(index) {
+    tasks[index].done = !tasks[index].done;
+    showTasks();
+  }
+
+  showTasks();
+</script>
+
+</body>
+</html>
