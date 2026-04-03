@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Mood Theme Generator</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="container">
+    <h1>🎭 Mood Theme Generator</h1>
+
+    <select id="moodSelect">
+      <option value="">Select Mood</option>
+      <option value="happy">😊 Happy</option>
+      <option value="sad">😢 Sad</option>
+      <option value="focus">🧠 Focus</option>
+      <option value="chill">🌴 Chill</option>
+    </select>
+
+    <button onclick="changeMood()">Apply Mood</button>
+
+    <div id="quoteBox"></div>
+  </div>
+
+  <audio id="bgMusic" loop></audio>
+
+  <script src="script.js"></script>
+</body>
+</html>
