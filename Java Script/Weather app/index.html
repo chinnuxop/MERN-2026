@@ -1,18 +1,67 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Weather App</title>
-  <link rel="stylesheet" href="style.css">
+  <title>Weather App 🌦️</title>
 </head>
-<body>
 
-  <h2>Weather App</h2>
+<body style="font-family: Arial; text-align:center; margin-top:100px; background: linear-gradient(to right, #4facfe, #00f2fe); color:white;">
 
-  <input type="text" id="city" placeholder="Enter city">
-  <button onclick="getWeather()">Search</button>
+  <div style="background: rgba(0,0,0,0.3); padding:20px; width:300px; margin:auto; border-radius:10px;">
+    
+    <h2>Weather App 🌍</h2>
 
-  <div id="weatherResult"></div>
+    <input 
+      type="text" 
+      id="city" 
+      placeholder="Enter city"
+      style="padding:10px; width:70%; border:none; border-radius:5px;"
+    >
 
-  <script src="script.js"></script>
+    <button 
+      onclick="getWeather()" 
+      style="padding:10px; cursor:pointer; border:none; border-radius:5px;"
+    >
+      Search
+    </button>
+
+    <div id="weatherResult" style="margin-top:20px;"></div>
+
+  </div>
+
+  <script>
+    const API_KEY = "572551aa2dc1ee9f0f770dd86ed8107c"; // replace this
+
+    async function getWeather() {
+      const city = document.getElementById("city").value;
+
+      if(city === "") {
+        alert("Enter city name");
+        return;
+      }
+
+      const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric`;
+
+      try {
+        const res = await fetch(url);
+        const data = await res.json();
+
+        if (data.cod === "404") {
+          document.getElementById("weatherResult").innerHTML = "City not found ❌";
+          return;
+        }
+
+        document.getElementById("weatherResult").innerHTML = `
+          <h3>${city}</h3>
+          <p>🌡️ Temp: ${data.main.temp}°C</p>
+          <p>💧 Humidity: ${data.main.humidity}%</p>
+          <p>☁️ Condition: ${data.weather[0].main}</p>
+        `;
+
+      } catch (error) {
+        document.getElementById("weatherResult").innerHTML = "Error fetching data ⚠️";
+      }
+    }
+  </script>
+
 </body>
 </html>
