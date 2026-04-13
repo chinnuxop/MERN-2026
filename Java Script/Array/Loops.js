@@ -14,7 +14,7 @@ a.forEach((value,index,arr)=>{
 let obj ={
     a:1,
     b:2,
-    c:3
+    c:6
 }
 for (const key in obj) {
     if (!Object.hasOwn(obj, key)) continue;
