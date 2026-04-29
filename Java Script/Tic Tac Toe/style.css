@@ -1,6 +1,6 @@
 body {
   font-family: Arial;
-  background: linear-gradient(135deg, #667eea, #764ba2);
+  background: linear-gradient(135deg, #0a0b13,red);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -9,7 +9,7 @@ body {
 }
 
 .container {
-  background: rgb(152, 99, 209);
+  background: rgb(192, 11, 11);
   padding: 20px;
   border-radius: 12px;
   text-align: center;
@@ -38,18 +38,18 @@ body {
 }
 
 .cell:hover {
-  background: #ddd;
+  background: #634242;
 }
 
 button {
   padding: 8px 15px;
   border: none;
-  background: #667eea;
+  background: #3e404b;
   color: white;
   border-radius: 6px;
   cursor: pointer;
 }
 
 button:hover {
-  background: #5a67d8;
+  background: #4e0404;
 }
