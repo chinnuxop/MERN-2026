@@ -43,14 +43,14 @@ console.log(typeof x, typeof y, typeof z,
 // }
 
 let o = {
-  "name": "Harry",
+  "name": "DIBESH",
   "job role": "MERN",
-  "job code": 45678
+  "job code": 240720100062
 }
 console.log(o);
 o.Salary = " 100cr"
 console.log(o)
-o.Salary = " 500cr"
+o.Salary = " 600cr"
 console.log(o)
 
 
@@ -58,7 +58,7 @@ console.log(o)
 // Example-1
 
 let Name = "Dibesh"
-let Add1 = Name + " Parida"
+let Add1 = Name + " KUMAR" + "PARIDA"
 console.log(Add1)
 
 //Example-2
