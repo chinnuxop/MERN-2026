@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Quiz App</title>
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:Arial, sans-serif;
+    }
+
+    body{
+      background:#0f172a;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      height:100vh;
+      color:white;
+    }
+
+    .quiz-box{
+      width:400px;
+      background:#1e293b;
+      padding:25px;
+      border-radius:12px;
+      box-shadow:0 0 10px rgba(0,0,0,0.5);
+    }
+
+    h2{
+      margin-bottom:20px;
+    }
+
+    .option{
+      background:#334155;
+      padding:12px;
+      margin:10px 0;
+      border-radius:8px;
+      cursor:pointer;
+      transition:0.3s;
+    }
+
+    .option:hover{
+      background:#475569;
+    }
+
+    #nextBtn{
+      width:100%;
+      padding:12px;
+      border:none;
+      background:#3b82f6;
+      color:white;
+      font-size:16px;
+      border-radius:8px;
+      cursor:pointer;
+      margin-top:15px;
+    }
+
+    #nextBtn:hover{
+      background:#2563eb;
+    }
+
+    .score{
+      text-align:center;
+      font-size:24px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="quiz-box">
+    <h2 id="question">Question</h2>
+
+    <div id="options"></div>
+
+    <button id="nextBtn">Next</button>
+  </div>
+
+  <script>
+    const quizData = [
+      {
+        question: "Which language runs in browser?",
+        options: ["Java", "C", "Python", "JavaScript"],
+        answer: "JavaScript"
+      },
+      {
+        question: "HTML stands for?",
+        options: [
+          "Hyper Trainer Marking Language",
+          "Hyper Text Markup Language",
+          "Hyper Text Marketing Language",
+          "Hyper Tool Multi Language"
+        ],
+        answer: "Hyper Text Markup Language"
+      },
+      {
+        question: "Which CSS property changes text color?",
+        options: ["font-style", "background", "color", "text-align"],
+        answer: "color"
+      }
+    ];
+
+    let currentQuestion = 0;
+    let score = 0;
+
+    const questionEl = document.getElementById("question");
+    const optionsEl = document.getElementById("options");
+    const nextBtn = document.getElementById("nextBtn");
+
+    function loadQuestion() {
+      const currentQuiz = quizData[currentQuestion];
+
+      questionEl.innerText = currentQuiz.question;
+      optionsEl.innerHTML = "";
+
+      currentQuiz.options.forEach(option => {
+        const div = document.createElement("div");
+        div.classList.add("option");
+        div.innerText = option;
+
+        div.onclick = () => {
+          checkAnswer(option);
+        };
+
+        optionsEl.appendChild(div);
+      });
+    }
+
+    function checkAnswer(selected) {
+      const correct = quizData[currentQuestion].answer;
+
+      if(selected === correct){
+        score++;
+      }
+
+      nextBtn.style.display = "block";
+    }
+
+    nextBtn.addEventListener("click", () => {
+      currentQuestion++;
+
+      if(currentQuestion < quizData.length){
+        loadQuestion();
+      } else {
+        showScore();
+      }
+    });
+
+    function showScore(){
+      document.querySelector(".quiz-box").innerHTML = `
+        <div class="score">
+          <h2>Quiz Finished 🎉</h2>
+          <p>Your Score: ${score}/${quizData.length}</p>
+        </div>
+      `;
+    }
+
+    loadQuestion();
+  </script>
+
+</body>
+</html>
