@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Typing Speed Game</title>
+</head>
+
+<body style="
+  margin:0;
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-family:Arial;
+  background:linear-gradient(135deg,#667eea,#764ba2);
+">
+
+  <div style="
+    background:white;
+    padding:30px;
+    border-radius:15px;
+    width:350px;
+    text-align:center;
+    box-shadow:0 0 15px rgba(0,0,0,0.2);
+  ">
+
+    <h1>Typing Speed Game</h1>
+
+    <h2 id="word" style="
+      font-size:35px;
+      color:#764ba2;
+    ">
+      start
+    </h2>
+
+    <input
+      id="input"
+      type="text"
+      placeholder="Type here..."
+      style="
+        width:100%;
+        padding:12px;
+        font-size:18px;
+        border-radius:8px;
+        border:2px solid #ccc;
+        outline:none;
+        box-sizing:border-box;
+      "
+    >
+
+    <div style="
+      display:flex;
+      justify-content:space-between;
+      margin-top:20px;
+      font-size:18px;
+    ">
+      <p>⏳ Time: <span id="time">30</span></p>
+      <p>🏆 Score: <span id="score">0</span></p>
+    </div>
+
+    <button
+      onclick="startGame()"
+      style="
+        width:100%;
+        padding:12px;
+        margin-top:20px;
+        border:none;
+        border-radius:8px;
+        background:#764ba2;
+        color:white;
+        font-size:18px;
+        cursor:pointer;
+      "
+    >
+      Start Game
+    </button>
+
+  </div>
+
+  <script>
+    const words = [
+      "javascript",
+      "coding",
+      "developer",
+      "react",
+      "github",
+      "frontend",
+      "backend",
+      "database"
+    ];
+
+    let score = 0;
+    let time = 30;
+    let currentWord = "";
+    let timer;
+
+    const wordEl = document.getElementById("word");
+    const inputEl = document.getElementById("input");
+    const scoreEl = document.getElementById("score");
+    const timeEl = document.getElementById("time");
+
+    function randomWord() {
+      return words[Math.floor(Math.random() * words.length)];
+    }
+
+    function showWord() {
+      currentWord = randomWord();
+      wordEl.innerText = currentWord;
+    }
+
+    function startGame() {
+
+      score = 0;
+      time = 30;
+
+      scoreEl.innerText = score;
+      timeEl.innerText = time;
+
+      showWord();
+
+      inputEl.value = "";
+      inputEl.focus();
+
+      clearInterval(timer);
+
+      timer = setInterval(() => {
+
+        time--;
+
+        timeEl.innerText = time;
+
+        if (time === 0) {
+
+          clearInterval(timer);
+
+          alert("Game Over! Your score is " + score);
+        }
+
+      }, 1000);
+    }
+
+    inputEl.addEventListener("input", () => {
+
+      if (inputEl.value === currentWord) {
+
+        score++;
+
+        scoreEl.innerText = score;
+
+        inputEl.value = "";
+
+        showWord();
+      }
+
+    });
+  </script>
+
+</body>
+</html>
