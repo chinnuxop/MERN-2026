@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Typing Speed Game</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Advanced Typing Speed Game</title>
 </head>
 
 <body style="
@@ -13,23 +13,37 @@
   justify-content:center;
   align-items:center;
   font-family:Arial;
-  background:linear-gradient(135deg,#667eea,#764ba2);
+  background:linear-gradient(135deg,#021b13,#000000);
 ">
 
   <div style="
-    background:white;
+    background:#0d0d0d;
     padding:30px;
-    border-radius:15px;
-    width:350px;
+    border-radius:20px;
+    width:400px;
     text-align:center;
-    box-shadow:0 0 15px rgba(0,0,0,0.2);
+    box-shadow:0 0 25px rgba(0,255,120,0.3);
+    border:2px solid #00ff88;
+    color:white;
   ">
 
-    <h1>Typing Speed Game</h1>
+    <h1 style="
+      color:#00ff88;
+      margin-bottom:10px;
+      text-shadow:0 0 10px #00ff88;
+    ">
+      Typing Speed Game
+    </h1>
+
+    <p style="color:#ccc;">
+      Type the word before time runs out!
+    </p>
 
     <h2 id="word" style="
-      font-size:35px;
-      color:#764ba2;
+      font-size:38px;
+      color:#00ff88;
+      margin:20px 0;
+      text-shadow:0 0 10px #00ff88;
     ">
       start
     </h2>
@@ -38,78 +52,175 @@
       id="input"
       type="text"
       placeholder="Type here..."
+      autocomplete="off"
       style="
         width:100%;
-        padding:12px;
+        padding:14px;
         font-size:18px;
-        border-radius:8px;
-        border:2px solid #ccc;
+        border-radius:10px;
+        border:2px solid #00ff88;
         outline:none;
         box-sizing:border-box;
+        background:black;
+        color:#00ff88;
       "
     >
 
     <div style="
-      display:flex;
-      justify-content:space-between;
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:10px;
       margin-top:20px;
       font-size:18px;
     ">
-      <p>⏳ Time: <span id="time">45</span></p>
-      <p>🏆 Score: <span id="score">0</span></p>
+
+      <div style="
+        background:#111;
+        padding:10px;
+        border-radius:10px;
+        border:1px solid #00ff88;
+      ">
+        ⏳ Time
+        <h2 id="time">45</h2>
+      </div>
+
+      <div style="
+        background:#111;
+        padding:10px;
+        border-radius:10px;
+        border:1px solid #00ff88;
+      ">
+        🏆 Score
+        <h2 id="score">0</h2>
+      </div>
+
+      <div style="
+        background:#111;
+        padding:10px;
+        border-radius:10px;
+        border:1px solid #00ff88;
+      ">
+        ⚡ WPM
+        <h2 id="wpm">0</h2>
+      </div>
+
+      <div style="
+        background:#111;
+        padding:10px;
+        border-radius:10px;
+        border:1px solid #00ff88;
+      ">
+        🔥 High Score
+        <h2 id="highScore">0</h2>
+      </div>
+
+    </div>
+
+    <div style="
+      margin-top:20px;
+    ">
+
+      <select id="difficulty" style="
+        width:100%;
+        padding:12px;
+        border-radius:8px;
+        background:black;
+        color:#00ff88;
+        border:2px solid #00ff88;
+        font-size:16px;
+      ">
+        <option value="easy">Easy</option>
+        <option value="medium" selected>Medium</option>
+        <option value="hard">Hard</option>
+      </select>
+
     </div>
 
     <button
       onclick="startGame()"
       style="
         width:100%;
-        padding:12px;
+        padding:14px;
         margin-top:20px;
         border:none;
-        border-radius:8px;
-        background:#764ba2;
-        color:white;
+        border-radius:10px;
+        background:#00ff88;
+        color:black;
         font-size:18px;
+        font-weight:bold;
         cursor:pointer;
       "
     >
       Start Game
     </button>
 
+    <p id="message" style="
+      margin-top:15px;
+      color:#00ff88;
+      font-weight:bold;
+      height:20px;
+    "></p>
+
   </div>
 
   <script>
-    const words = [
-      "javascript",
-      "coding",
-      "developer",
-      "react",
-      "phython",
-      "java",
-      "springboot",
-      "commit",
-      "github",
-      "frontend",
-      "backend",
-      "database"
+
+    const easyWords = [
+      "html","css","java","code","react","node","array"
+    ];
+
+    const mediumWords = [
+      "javascript","frontend","backend","database",
+      "developer","function","github"
+    ];
+
+    const hardWords = [
+      "asynchronous","authentication","optimization",
+      "programming","microservices","springboot"
     ];
 
     let score = 0;
     let time = 45;
     let currentWord = "";
     let timer;
+    let totalTyped = 0;
 
     const wordEl = document.getElementById("word");
     const inputEl = document.getElementById("input");
     const scoreEl = document.getElementById("score");
     const timeEl = document.getElementById("time");
+    const wpmEl = document.getElementById("wpm");
+    const highScoreEl = document.getElementById("highScore");
+    const difficultyEl = document.getElementById("difficulty");
+    const messageEl = document.getElementById("message");
+
+    let highScore = localStorage.getItem("highScore") || 0;
+    highScoreEl.innerText = highScore;
+
+    function getWords() {
+
+      if (difficultyEl.value === "easy") {
+        return easyWords;
+      }
+
+      if (difficultyEl.value === "hard") {
+        return hardWords;
+      }
+
+      return mediumWords;
+    }
 
     function randomWord() {
+
+      const words = getWords();
+
       return words[Math.floor(Math.random() * words.length)];
     }
 
     function showWord() {
+
       currentWord = randomWord();
+
       wordEl.innerText = currentWord;
     }
 
@@ -117,9 +228,13 @@
 
       score = 0;
       time = 45;
+      totalTyped = 0;
 
       scoreEl.innerText = score;
       timeEl.innerText = time;
+      wpmEl.innerText = 0;
+
+      inputEl.disabled = false;
 
       showWord();
 
@@ -134,11 +249,36 @@
 
         timeEl.innerText = time;
 
-        if (time === 0) {
+        let wpm = Math.floor((totalTyped / 5) / ((45 - time) / 60));
+
+        if (!isFinite(wpm)) {
+          wpm = 0;
+        }
+
+        wpmEl.innerText = wpm;
+
+        if (time <= 0) {
 
           clearInterval(timer);
 
-          alert("Game Over! Your score is " + score);
+          inputEl.disabled = true;
+
+          messageEl.innerText = "Game Over!";
+
+          if (score > highScore) {
+
+            highScore = score;
+
+            localStorage.setItem("highScore", highScore);
+
+            highScoreEl.innerText = highScore;
+
+            alert("🎉 New High Score: " + highScore);
+          }
+          else {
+
+            alert("Game Over! Your score is " + score);
+          }
         }
 
       }, 1000);
@@ -146,18 +286,32 @@
 
     inputEl.addEventListener("input", () => {
 
+      totalTyped++;
+
       if (inputEl.value === currentWord) {
 
         score++;
 
         scoreEl.innerText = score;
 
+        messageEl.innerText = "✅ Correct!";
+
         inputEl.value = "";
 
         showWord();
+
+        if (navigator.vibrate) {
+          navigator.vibrate(100);
+        }
+
+      }
+      else {
+
+        messageEl.innerText = "⌨️ Keep Typing...";
       }
 
     });
+
   </script>
 
 </body>
