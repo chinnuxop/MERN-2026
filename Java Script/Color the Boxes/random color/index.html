@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Random Color Generator</title>
+</head>
+
+<body style="
+  margin:0;
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:#111;
+  font-family:Arial;
+  transition:0.5s;
+">
+
+  <div style="
+    background:white;
+    padding:30px;
+    border-radius:15px;
+    text-align:center;
+    width:300px;
+    box-shadow:0 0 20px rgba(0,0,0,0.3);
+  ">
+
+    <h1 style="margin-bottom:20px;">🎨 Color Generator</h1>
+
+    <div id="colorBox" style="
+      height:120px;
+      border-radius:10px;
+      background:#3498db;
+      margin-bottom:20px;
+      transition:0.5s;
+    "></div>
+
+    <h2 id="colorCode">#3498DB</h2>
+
+    <button onclick="generateColor()" style="
+      padding:12px 20px;
+      border:none;
+      border-radius:8px;
+      background:#111;
+      color:white;
+      cursor:pointer;
+      font-size:16px;
+    ">
+      Generate Color
+    </button>
+
+  </div>
+
+<script>
+function generateColor() {
+
+  let letters = "0123456789ABCDEF";
+  let color = "#";
+
+  for(let i=0; i<6; i++){
+    color += letters[Math.floor(Math.random() * 16)];
+  }
+
+  document.getElementById("colorBox").style.background = color;
+  document.getElementById("colorCode").innerText = color;
+  document.body.style.background = color;
+}
+</script>
+
+</body>
+</html>
