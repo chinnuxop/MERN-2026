@@ -20,7 +20,7 @@ const callback = (arg,fn) =>{
 const loadScript = (src, callback) => {
 let sc = document.createElement("script");
 sc.src= src;
-sc.onload = callback("Dibesh",fn);
+sc.onload = () => callback("Dibesh",fn);
 document.head.append(sc);
 }
 
