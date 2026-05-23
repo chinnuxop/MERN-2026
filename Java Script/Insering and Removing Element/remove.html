@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Remove Example</title>
+</head>
+<body>
+
+  <h2>Remove Element Example</h2>
+
+  <ul id="list">
+    <li>Apple</li>
+    <li>Mango</li>
+    <li>Banana</li>
+  </ul>
+
+  <button onclick="removeItem()">Remove Item</button>
+
+  <script>
+    function removeItem() {
+
+      // Select ul
+      let list = document.getElementById("list");
+
+      // Remove last child
+      list.removeChild(list.lastElementChild);
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        console.log("Program Started");
+
+// Step 1: Callback function
+function downloadComplete(fileName) {
+    console.log("Download completed for:", fileName);
+}
+
+// Step 2: Main function
+function downloadFile(fileName, callback) {
+
+    console.log("Downloading file:", fileName);
+
+    // Simulating server delay using setTimeout
+    setTimeout(() => {
+
+        console.log("File downloaded successfully");
+
+        // Calling callback function
+        callback(fileName);
+
+    }, 3000);
+}
+
+// Step 3: Calling main function
+downloadFile("JavaScript_Notes.pdf", downloadComplete);
+
+console.log("Other work is running...");
+    </script>
+</body>
+</html>
